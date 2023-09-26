@@ -10,8 +10,8 @@ export const navbarLinks = [
         type: 'link'
     },
     {
-        title: 'Valorar',
-        href: '#valorar',
+        title: 'Contactar',
+        href: '#contacto',
         type: 'button'
     },
 ];

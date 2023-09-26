@@ -3,7 +3,7 @@
 export const cardData = [
     {
         title: 'Somos la elección ideal para inquilinos',
-        description: 'En RoomToRent, nos enfocamos principalmente en brindar tranquilidad y comodidad a los propietarios. Somos plenamente conscientes de los desafíos asociados con el alquiler tradicional de propiedades.',
+        description: 'En Room Squared, nos enfocamos principalmente en brindar tranquilidad y comodidad a los propietarios. Somos plenamente conscientes de los desafíos asociados con el alquiler tradicional de propiedades.',
         icon: 'user'
     },
     {
