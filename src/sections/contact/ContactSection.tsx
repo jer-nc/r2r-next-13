@@ -3,7 +3,7 @@ import FormContact from '../carousel/form/FormContact'
 
 const ContactSection = () => {
     return (
-        <div className=' h-full w-full py-10'>
+        <div id='contacto' className=' h-full w-full py-10'>
             <div className='mx-auto max-w-[1300px] h-full px-4'>
                 <div className='h-full justify-center items-center space-y-6'>
                     <h1 className='text-4xl font-semibold text-center'>Contacta con nosotros</h1>

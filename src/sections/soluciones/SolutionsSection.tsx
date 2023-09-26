@@ -10,7 +10,7 @@ const SolutionsSection = () => {
                 <div className='h-full flex flex-col justify-center items-center space-y-6'>
                     <h1 className='text-2xl font-semibold '>¿Quiere tener el inquilino ideal?</h1>
                     <p className='text-xl font-semibold '>¡Revalorice su vivienda y aumente su rentabilidad, despreocupese de los problemas de el alquiler tradicional!</p>
-                    <p className='text-md '>En RoomToRent le ofrecemos la oportunidad de revalorizar su inmueble y aumentar su rentabilidad hasta un 60%. Garantizamos la máxima tranquilidad y comodidad al propietario.</p>
+                    <p className='text-md '>En Room Squared  le ofrecemos la oportunidad de revalorizar su inmueble, aumentar su rentabilidad hasta un 50% y olvidarse de toda la gestión. Garantizamos la maxima tranquilidad y comodidad al propietario.</p>
                     <Button variant='primary' size='lg'>¿Quiere tener al inquilino ideal?</Button>
                 </div>
                 <div className=' h-full flex justify-start items-center'>

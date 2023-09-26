@@ -33,13 +33,13 @@ const Navbar = () => {
                 {navbarLinks.map((link, index) => {
                     if (link.type === 'link') {
                         return (
-                            <a key={index} href={link.href} className='mr-4 scroll-smooth'>
+                            <a key={index} href={link.href} style={{ scrollBehavior: 'smooth' }} className='mr-4 scroll-smooth'>
                                 {link.title}
                             </a>
                         );
                     } else if (link.type === 'button') {
                         return (
-                            <Button className='hidden md:inline-flex' variant='primary' size='lg' key={index} onClick={() => window.location.href = link.href}>
+                            <Button className='hidden md:inline-flex' variant='primary' size='lg' key={index}  onClick={() => window.location.href = link.href}>
                                 {link.title}
                             </Button>
                         );
