@@ -38,7 +38,7 @@ const FormContact = () => {
     async function onSubmit(values: z.infer<typeof contactSchema>) {
         const lambdaUrl = process.env.NEXT_PUBLIC_LAMBDA_URL;
         console.log(values);
-        console.log(lambdaUrl);
+        // console.log(lambdaUrl);
 
         try {
             if (lambdaUrl) {
@@ -149,7 +149,6 @@ const FormContact = () => {
                         </FormItem>
                     )}
                 />
-                <Toaster />
                 {
                     !loading ? <Button type="submit" variant='primary' className='py-6 w-full'>Enviar</Button> : (
                         <Button disabled type="submit" variant='primary' className='py-6 w-full'>
@@ -158,6 +157,7 @@ const FormContact = () => {
                     )
                 }
             </form>
+            <Toaster />
         </Form>
     )
 }
