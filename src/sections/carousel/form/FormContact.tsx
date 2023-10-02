@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { contactSchema } from './contactSchema'
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -16,8 +16,12 @@ import {
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
+import { useToast } from '@/components/ui/use-toast'
+import { Toaster } from '@/components/ui/toaster'
 
 const FormContact = () => {
+    const [loading, setLoading] = useState(false)
+    const { toast } = useToast()
 
     const form = useForm<z.infer<typeof contactSchema>>({
         resolver: zodResolver(contactSchema),
@@ -31,10 +35,33 @@ const FormContact = () => {
         },
     })
 
-    function onSubmit(values: z.infer<typeof contactSchema>) {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
-        console.log(values)
+    async function onSubmit(values: z.infer<typeof contactSchema>) {
+        const lambdaUrl = process.env.NEXT_PUBLIC_LAMBDA_URL;
+
+        try {
+            if (lambdaUrl) {
+                const response = await fetch(lambdaUrl, {
+                    method: "POST",
+                    body: JSON.stringify(values),
+                }).then(res => res.json())
+                    // .then(data => console.log(data))
+                    .then(() => {
+                        setLoading(false)
+                        form.reset()
+                        handleShowToaster()
+                    })
+                    .catch(err => console.log(err))
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    const handleShowToaster = () => {
+        toast({
+            title: "Mensaje enviado correctamente",
+            description: "Nos pondremos en contacto contigo lo antes posible.",
+        })
     }
 
     return (
@@ -47,7 +74,7 @@ const FormContact = () => {
                         <FormItem>
                             <FormLabel className='text-gray-900'>Nombre <span className='text-red-500'>*</span></FormLabel>
                             <FormControl>
-                                <Input placeholder="Nombre" {...field} />
+                                <Input disabled={loading} placeholder="Nombre" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -60,7 +87,7 @@ const FormContact = () => {
                         <FormItem>
                             <FormLabel className='text-gray-900'>Email <span className='text-red-500'>*</span></FormLabel>
                             <FormControl>
-                                <Input placeholder="Correo electrónico" {...field} />
+                                <Input disabled={loading} placeholder="Correo electrónico" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -73,7 +100,7 @@ const FormContact = () => {
                         <FormItem>
                             <FormLabel className='text-gray-900'>Teléfono <span className='text-red-500'>*</span></FormLabel>
                             <FormControl>
-                                <Input type='number' placeholder="+ 34" {...field} />
+                                <Input disabled={loading} type='number' placeholder="+ 34" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -87,7 +114,7 @@ const FormContact = () => {
                             <FormItem>
                                 <FormLabel className='text-gray-900'>Ciudad <span className='text-red-500'>*</span></FormLabel>
                                 <FormControl>
-                                    <Input placeholder="Tu ciudad" {...field} />
+                                    <Input disabled={loading} placeholder="Tu ciudad" {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -100,7 +127,7 @@ const FormContact = () => {
                             <FormItem>
                                 <FormLabel className='text-gray-900'>Zona <span className='text-red-500'>*</span></FormLabel>
                                 <FormControl>
-                                    <Input placeholder="Tu zona" {...field} />
+                                    <Input disabled={loading} placeholder="Tu zona" {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -114,13 +141,20 @@ const FormContact = () => {
                         <FormItem>
                             <FormLabel>Detalles</FormLabel>
                             <FormControl>
-                                <Textarea className='resize-none h-[200px]' placeholder="Comentario opcional" {...field} />
+                                <Textarea disabled={loading} className='resize-none h-[200px]' placeholder="Comentario opcional" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
                     )}
                 />
-                <Button type="submit" variant='primary' className='py-6 w-full'>Contactar</Button>
+                <Toaster />
+                {
+                    !loading ? <Button type="submit" variant='primary' className='py-6 w-full'>Enviar</Button> : (
+                        <Button disabled type="submit" variant='primary' className='py-6 w-full'>
+                            Enviando...
+                        </Button>
+                    )
+                }
             </form>
         </Form>
     )
