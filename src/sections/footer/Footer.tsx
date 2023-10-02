@@ -21,14 +21,14 @@ const Footer = () => {
                     <div className='flex justify-center gap-12 py-4 max-w-[650px] mx-auto text-gray-600'>
                         {/* <FormContact /> */}
 
-                        <a href="https://www.instagram.com/roomtorentspain.es/" target='_blank'>
+                        <a href="https://instagram.com/roomsquared.es?igshid=OGQ5ZDc2ODk2ZA==" target='_blank'>
                             <Instagram variant="Bold" />
                         </a>
 
-                        <a href="https://wa.me/message/IEJ64XUTZM2SE1">
+                        <a href="https://wa.me/message/IEJ64XUTZM2SE1" target='_blank'>
                             <Whatsapp variant="Bold" />
                         </a>
-                        <a href="">
+                        <a href="mailto:peperoman5000@gmail.com" target='_blank'>
                             <Message variant="Bold" />
                         </a>
 
