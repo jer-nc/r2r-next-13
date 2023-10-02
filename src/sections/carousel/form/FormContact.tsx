@@ -37,6 +37,8 @@ const FormContact = () => {
 
     async function onSubmit(values: z.infer<typeof contactSchema>) {
         const lambdaUrl = process.env.NEXT_PUBLIC_LAMBDA_URL;
+        console.log(values);
+        console.log(lambdaUrl);
 
         try {
             if (lambdaUrl) {
@@ -44,7 +46,7 @@ const FormContact = () => {
                     method: "POST",
                     body: JSON.stringify(values),
                 }).then(res => res.json())
-                    // .then(data => console.log(data))
+                    .then(data => console.log(data))
                     .then(() => {
                         setLoading(false)
                         form.reset()
