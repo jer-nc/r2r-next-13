@@ -13,7 +13,7 @@
 ![](./public/demo-readme.png)
 ![](./public/demo-ses.png)
 
-You can view this website [here](https://main.d2pncs0hhp6niy.amplifyapp.com/).
+You can view this website [here](https://www.roomsquare.es/).
 
 ## Technologies Used
 
